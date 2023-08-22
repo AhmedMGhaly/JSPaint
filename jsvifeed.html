@@ -1,0 +1,94 @@
+<html>
+
+
+<head>
+     <title> JsViFeed </title>
+     <link rel="stylesheet" type="text/css" href="style.css" >
+</head>
+
+
+
+
+
+
+
+
+<body>
+
+
+
+<div class="canvas" id="canvasDivId">
+     <canvas id="myCanvas" width="360px" height="360px"></canvas>
+</div>
+
+
+<div class="export" id="exportDivId">
+     <button onclick="Export()">export</button>
+</div>
+
+
+
+
+
+</body>
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+function Export(){
+	let downloadLink = document.createElement('a');
+	downloadLink.setAttribute('download', 'ExportedImg.png');
+	let canvas = document.getElementById('myCanvas');
+	canvas.toBlob(function(blob) {
+	  let url = URL.createObjectURL(blob);
+	  downloadLink.setAttribute('href', url);
+	  downloadLink.click();
+	});
+}
+
+
+
+// js style //
+
+
+function pixel(p){
+         return p+"px";
+         }
+function getpixel(p){
+         return Number(p.replace("px",""));
+         }
+
+
+const screen_height = document.documentElement.clientHeight;
+const screen_width = document.documentElement.clientWidth;
+
+
+const css_canvas = document.getElementById("canvasDivId").style;
+const html_canvas = document.getElementById("myCanvas");
+
+css_canvas.height=html_canvas.height;
+css_canvas.width=html_canvas.width;
+
+
+css_canvas.top=pixel((screen_height/2)-(getpixel(css_canvas.height)/2));
+css_canvas.left=pixel((screen_width/2)-(getpixel(css_canvas.width)/2));
+
+
+
+
+
+</script>
+
+<script src="./jsvifeed.js"></script>
+<script src="./slogan_project.js"></script>
+
+</html>
